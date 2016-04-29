@@ -1,0 +1,31 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core">
+<h3>simpeBuild version 0.3</h3>
+<p>
+This Pipeline Global Variable runs a very simple build with some environment variables. This would work with pipeline-as-code and branch source.
+This should be familiar and declarative-ish looking to anyone familiar with tools like .travis.yml, however, it is implemented as a pipeline DSL (so you can do all the other powerful pipeline things).
+</p>
+<pre>
+simpleBuild {
+
+    machine = "hi-speed"
+    docker_image = "java:1.9"
+
+    env = [
+        FOO : 42,
+        BAR : "YASS"
+    ]
+
+    git_repo = "https://github.com/cloudbeers/PR-demo"
+
+    before_script = "echo before"
+    script = 'echo after $FOO'
+    after_script = 'echo done now'
+
+    notifications = [
+        email : "mneale@cloudbees.com"
+    ]
+
+}
+</pre>
+</j:jelly>

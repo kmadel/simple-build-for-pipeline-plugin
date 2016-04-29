@@ -7,7 +7,7 @@ package dsl
 simpleBuild {
 
     machine = "hi-speed"
-    docker = "java:1.9"
+    docker_image = "java:1.9"
 
     env = [
         FOO : 42,
@@ -101,7 +101,7 @@ def runScripts(config) {
         envList.add("${e.getKey()}=${e.getValue()}")
     }
     withEnv(envList) {
-
+        stage 'checkout'
         /* checkout the codes */
         if (config.git_repo == null) {
             checkout scm
@@ -111,10 +111,13 @@ def runScripts(config) {
 
         /* run the basic build steps */
         if (config.before_script != null) {
+            stage 'Before'
             sh config.before_script
         }
+        stage 'Build'
         sh config.script
         if (config.after_script != null) {
+            stage 'After'
             sh config.after_script
         }
 

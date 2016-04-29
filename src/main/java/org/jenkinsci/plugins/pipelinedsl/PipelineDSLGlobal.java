@@ -25,15 +25,12 @@ package org.jenkinsci.plugins.pipelinedsl;
 
 import groovy.lang.Binding;
 import groovy.lang.GroovyCodeSource;
-import hudson.Extension;
-import org.jenkinsci.plugins.scriptsecurity.sandbox.whitelists.ProxyWhitelist;
-import org.jenkinsci.plugins.scriptsecurity.sandbox.whitelists.StaticWhitelist;
 import org.jenkinsci.plugins.workflow.cps.CpsScript;
 import org.jenkinsci.plugins.workflow.cps.CpsThread;
 import org.jenkinsci.plugins.workflow.cps.GlobalVariable;
 
-import java.io.*;
-import java.net.URL;
+import java.io.InputStreamReader;
+import java.io.Reader;
 
 public abstract class PipelineDSLGlobal extends GlobalVariable {
 
